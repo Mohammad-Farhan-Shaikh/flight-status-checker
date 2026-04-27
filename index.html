@@ -39,56 +39,17 @@
                 </div>
                 <label class="input-group date-group" for="date">
                     <i class="fa-solid fa-calendar-days"></i>
-                    <input type="text" id="date-display" placeholder="Today" readonly style="cursor: pointer; width: 100%;">
-                    <input type="date" id="date" class="date" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
+                    <input type="text" id="date-display" placeholder="Today" readonly
+                        style="cursor: pointer; width: 100%;">
+                    <input type="date" id="date" class="date"
+                        style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
                 </label>
                 <button type="submit" class="check-flight">Search Flight</button>
             </form>
         </div>
     </div>
 
-    <script>
-        const dateInput = document.getElementById('date');
-        const dateDisplay = document.getElementById('date-display');
-        const dateGroup = document.querySelector('.date-group');
-        
-        const formatDate = (date) => {
-            const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            return date.toLocaleDateString('en-US', options);
-        };
-
-        // Set initial value
-        const today = new Date();
-        dateInput.valueAsDate = today;
-        dateDisplay.value = formatDate(today);
-
-        // Update display when date changes
-        dateInput.addEventListener('input', (e) => {
-            if (e.target.value) {
-                const date = new Date(e.target.value);
-                dateDisplay.value = formatDate(date);
-            }
-        });
-
-        const openPicker = (e) => {
-            // Only prevent default if we are manually triggering
-            if (e) e.stopPropagation();
-            try {
-                if ('showPicker' in HTMLInputElement.prototype) {
-                    dateInput.showPicker();
-                } else {
-                    dateInput.click();
-                }
-            } catch (err) {
-                dateInput.click();
-            }
-        };
-
-        dateDisplay.addEventListener('click', openPicker);
-        dateGroup.addEventListener('click', (e) => {
-            if (e.target !== dateInput) openPicker(e);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

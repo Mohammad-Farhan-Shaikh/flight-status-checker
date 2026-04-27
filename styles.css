@@ -187,6 +187,16 @@ body {
     cursor: inherit;
 }
 
+.input-group.date-group input[type="date"] {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
 .input-group input::placeholder {
     color: var(--text-muted);
 }
