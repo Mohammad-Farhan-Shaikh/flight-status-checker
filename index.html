@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Status Checker - Real-time Flight Tracking</title>
+    <meta name="description"
+        content="Track any flight worldwide in real-time. Get the latest status updates for airlines, flight numbers, and schedules with our premium flight data API.">
+    <meta name="keywords" content="flight tracker, flight status, airline tracking, real-time flight data">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="flight-status-checker">
+        <div class="heading-web">
+            <h1 class="heading">Flight Status Checker</h1>
+            <h2 class="sec-heading">Any flight worldwide, at your fingertips</h2>
+            <p class="para">Whether it's building booking platforms, visualizing and monitoring global flights or
+                creating popular flight tracking applications — our flight data API is used by thousands every day.
+            </p>
+        </div>
+
+        <div class="flight-form">
+            <form id="flight-input">
+                <div class="input-group">
+                    <i class="fa-solid fa-building"></i>
+                    <input type="text" id="airline" class="airline" placeholder="Airline (e.g. United Airlines)"
+                        required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-plane"></i>
+                    <input type="text" id="flight-number" class="flight-number"
+                        placeholder="Flight Number (e.g. UA2402)" required>
+                </div>
+                <label class="input-group date-group" for="date">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <input type="text" id="date-display" placeholder="Today" readonly style="cursor: pointer; width: 100%;">
+                    <input type="date" id="date" class="date" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
+                </label>
+                <button type="submit" class="check-flight">Search Flight</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const dateInput = document.getElementById('date');
+        const dateDisplay = document.getElementById('date-display');
+        const dateGroup = document.querySelector('.date-group');
+        
+        const formatDate = (date) => {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        };
+
+        // Set initial value
+        const today = new Date();
+        dateInput.valueAsDate = today;
+        dateDisplay.value = formatDate(today);
+
+        // Update display when date changes
+        dateInput.addEventListener('input', (e) => {
+            if (e.target.value) {
+                const date = new Date(e.target.value);
+                dateDisplay.value = formatDate(date);
+            }
+        });
+
+        const openPicker = (e) => {
+            // Only prevent default if we are manually triggering
+            if (e) e.stopPropagation();
+            try {
+                if ('showPicker' in HTMLInputElement.prototype) {
+                    dateInput.showPicker();
+                } else {
+                    dateInput.click();
+                }
+            } catch (err) {
+                dateInput.click();
+            }
+        };
+
+        dateDisplay.addEventListener('click', openPicker);
+        dateGroup.addEventListener('click', (e) => {
+            if (e.target !== dateInput) openPicker(e);
+        });
+    </script>
+</body>
+
+</html>

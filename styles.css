@@ -1,0 +1,239 @@
+:root {
+    --primary-color: #1a365d;
+    --accent-color: #2b6cb0;
+    --text-dark: #1a202c;
+    --text-light: #4a5568;
+    --text-muted: #718096;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --font-family: 'Outfit', sans-serif;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.flight-status-checker {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: radial-gradient(circle at top right, rgba(43, 108, 176, 0.05), transparent),
+                radial-gradient(circle at bottom left, rgba(26, 54, 93, 0.05), transparent),
+                linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+                url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&q=80&w=2070') center/cover no-repeat;
+    transition: var(--transition);
+}
+
+.heading-web {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 3rem;
+}
+
+.heading {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(43, 108, 176, 0.1);
+    border-radius: 50px;
+}
+
+.sec-heading {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.para {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    max-width: 720px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.flight-form {
+    width: 100%;
+    max-width: 1050px;
+    padding: 0 1rem;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#flight-input {
+    display: flex;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    border-right: 1px solid var(--border-color);
+    position: relative;
+    transition: var(--transition);
+}
+
+.input-group:hover {
+    background-color: rgba(248, 250, 252, 0.9);
+}
+
+.input-group:focus-within {
+    background-color: var(--white);
+    z-index: 10;
+}
+
+.input-group:focus-within::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-color);
+    animation: expand 0.3s ease;
+}
+
+@keyframes expand {
+    from { width: 0; left: 50%; }
+    to { width: 100%; left: 0; }
+}
+
+.input-group i:first-child {
+    color: var(--text-muted);
+    margin-right: 14px;
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.input-group:focus-within i:first-child {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+/* Chevron for the date picker */
+.input-group.date-group::after {
+    content: '\f0dc';
+    /* font-awesome up-down arrow */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 1.25rem;
+    color: #a0aec0;
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+.input-group.date-group {
+    cursor: pointer;
+    display: flex; /* Ensure it stays flex as a label */
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background: transparent;
+    padding: 1rem 0;
+    cursor: inherit;
+}
+
+.input-group input::placeholder {
+    color: var(--text-muted);
+}
+
+.check-flight {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white);
+    border: none;
+    padding: 0 3rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.check-flight:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px -5px rgba(26, 54, 93, 0.3);
+    filter: brightness(1.1);
+}
+
+.check-flight:active {
+    transform: translateY(0);
+}
+
+/* Custom styles for the date picker to make it look cleaner */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #flight-input {
+        flex-direction: column;
+    }
+
+    .input-group {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .check-flight {
+        padding: 1.25rem;
+    }
+}
