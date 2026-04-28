@@ -36,9 +36,9 @@ body {
     justify-content: center;
     padding: 2rem;
     background: radial-gradient(circle at top right, rgba(43, 108, 176, 0.05), transparent),
-                radial-gradient(circle at bottom left, rgba(26, 54, 93, 0.05), transparent),
-                linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
-                url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&q=80&w=2070') center/cover no-repeat;
+        radial-gradient(circle at bottom left, rgba(26, 54, 93, 0.05), transparent),
+        linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+        url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&q=80&w=2070') center/cover no-repeat;
     transition: var(--transition);
 }
 
@@ -138,8 +138,15 @@ body {
 }
 
 @keyframes expand {
-    from { width: 0; left: 50%; }
-    to { width: 100%; left: 0; }
+    from {
+        width: 0;
+        left: 50%;
+    }
+
+    to {
+        width: 100%;
+        left: 0;
+    }
 }
 
 .input-group i:first-child {
@@ -171,7 +178,8 @@ body {
 
 .input-group.date-group {
     cursor: pointer;
-    display: flex; /* Ensure it stays flex as a label */
+    display: flex;
+    /* Ensure it stays flex as a label */
 }
 
 .input-group input,
@@ -187,6 +195,11 @@ body {
     cursor: inherit;
 }
 
+#date-display {
+    cursor: pointer;
+    width: 100%;
+}
+
 .input-group.date-group input[type="date"] {
     position: absolute;
     inset: 0;
@@ -195,6 +208,7 @@ body {
     opacity: 0;
     cursor: pointer;
     z-index: 2;
+    pointer-events: auto;
 }
 
 .input-group input::placeholder {
@@ -247,3 +261,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         padding: 1.25rem;
     }
 }
+
+.error-msg {
+    background: rgba(255, 0, 0, 0.05);
+    color: #e53e3e;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(229, 62, 62, 0.2);
+    font-weight: 500;
+}
